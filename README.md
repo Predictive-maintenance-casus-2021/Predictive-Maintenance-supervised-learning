@@ -12,3 +12,7 @@ step 3. Clone this repo onto your machine
 Step 4. Open a terminal and navigate to the folder of this repo on your machine
 
 step 5. Launch jupyter notebook by running `jupyter notebook` in your terminal
+
+## Data
+
+The data in this repo was provided by https://www.kaggle.com/arnabbiswas1/microsoft-azure-predictive-maintenance
