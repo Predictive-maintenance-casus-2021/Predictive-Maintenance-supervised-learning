@@ -168,3 +168,6 @@ dmypy.json
 
 # Local History for Visual Studio Code
 .history/
+
+# Extra
+.ipynb_checkpoints
