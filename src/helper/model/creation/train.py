@@ -88,8 +88,10 @@ def scale_data(data=None):
 
 
 def group_data(x_data=None, y_data=None, history_window=5, future=0, shift=1):
-    # TODO: Add future.
-    num_batches = np.int(np.floor((len(x_data) - history_window) / shift)) + 1
+    if not isinstance(x_data, np.ndarray) or not isinstance(y_data, np.ndarray):
+        raise Exception("Data has to be a NumPy array.")
+
+    num_batches = np.int((np.floor((len(x_data) - history_window) / shift)) + 1 - future)
     num_features = x_data.shape[1]
 
     x_output = np.repeat(np.nan, repeats=num_batches * history_window * num_features).reshape(num_batches,
@@ -104,7 +106,7 @@ def group_data(x_data=None, y_data=None, history_window=5, future=0, shift=1):
     y_output = np.repeat(np.nan, repeats=num_batches)
     for batch in range(num_batches):
         x_output[batch, :, :] = x_data[(0 + shift * batch):(0 + shift * batch + history_window), :]
-        y_output[batch] = y_data[(shift * batch + (history_window - 1))]
+        y_output[batch] = y_data[(shift * batch + (history_window - 1)) + future]
 
     return x_output, y_output
 
