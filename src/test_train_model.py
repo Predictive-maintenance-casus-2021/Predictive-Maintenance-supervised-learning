@@ -32,10 +32,10 @@ if __name__ == "__main__":
             # Might be added in the future.
             # "Stable flag": []
         },
-        epochs=25,
+        epochs=50,
         test_size=0.2,
-        history_window=30,
-        future=0,
+        history_window=15,
+        future=30,
         shift=1,
         encoders=label_encoders
     )
@@ -44,12 +44,11 @@ if __name__ == "__main__":
 
     for name, train_result in train_results.items():
         # Save model to specified path.
-        # save_model(train_result.model, name, "../models/")
+        save_model(train_result, name, "../models/")
 
         # Get scores
-
         print(f"\n{name}")
-        print("=" * 50)
+        print("=" * 60)
 
         precision, recall, accuracy, f1_score = get_evaluation_metrics(train_result)
         print(
