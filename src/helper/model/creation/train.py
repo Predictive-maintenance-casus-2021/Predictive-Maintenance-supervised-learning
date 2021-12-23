@@ -1,8 +1,10 @@
 import os
 import numpy as np
+from joblib import dump
 import tensorflow as tf
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
+from helper.utils import *
 
 
 class TrainResult:
@@ -129,12 +131,14 @@ def make_model(n_history_window, n_features):
     return model
 
 
-def save_model(model=None, name=None, path=None):
-    file_name = name.lower().replace(" ", "_")
-    if path is None:
-        model.save(f"./models/{file_name}")
-    else:
-        model.save(os.path.join(path, file_name))
+def save_model(train_result=None, name=None, path="./models/"):
+    model_path = os.path.join(path, get_file_name(name))
+
+    train_result.model.save(model_path)
+
+    dump(train_result.encoder, f"{model_path}/label_encoder.bin", compress=True)
+    dump(train_result.x_scaler, f"{model_path}/x_scaler.bin", compress=True)
+    dump(train_result.y_scaler, f"{model_path}/y_scaler.bin", compress=True)
 
 
 if __name__ == "__main__":
