@@ -1,9 +1,24 @@
+import os
 import numpy as np
 import seaborn as sns
+import tensorflow as tf
 import matplotlib.pyplot as plt
 from sklearn import metrics
+from joblib import load
+from helper.utils import *
 from helper.utils import inverse_transform
 from helper.model.creation.train import TrainResult
+
+
+def load_model(name=None, path="./models"):
+    model_path = os.path.join(path, get_file_name(name))
+
+    model = tf.keras.models.load_model(model_path)
+    encoder = load(f"{model_path}/label_encoder.bin")
+    x_scaler = load(f"{model_path}/x_scaler.bin")
+    y_scaler = load(f"{model_path}/y_scaler.bin")
+
+    return model, encoder, x_scaler, y_scaler
 
 
 def get_evaluation_metrics(train_result=None):
