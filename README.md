@@ -3,7 +3,8 @@
 
 
 ## How to run the source code
-Step 1. Get (at least) [Python version 3.7.8](https://www.python.org/downloads/)
+
+Steo 1. Download Python [supported python: from version 3.7.8 to 3.8.10](https://www.python.org/downloads/).
 
 Step 2. Either install [Jupyter notebook with mamba, conda, or pip](https://jupyter.org/install). If you use PIP, we recommend using a [python virtual environment](https://docs.python.org/3/tutorial/venv.html)
 
