@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <!--- The menu on the left --->
-    <div>
-
-    </div>
+    <div></div>
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Vue is working on the server!" />
     <NavigationBar></NavigationBar>
@@ -18,12 +16,11 @@ import HelloWorld from "./components/HelloWorld.vue";
 // All imports
 import NavigationBar from "./components/NavBar.vue";
 
-
 export default {
   name: "App",
   components: {
     NavigationBar,
-    HelloWorld
+    HelloWorld,
   },
 };
 </script>
