@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="font-sans flex h-screen w-screen">
+  <div id="app" class="font-sans flex h-screen w-screen overflow-x-hidden">
     <navigation />
 
     <div class="w-full mt-4 px-4 lg:px-32">

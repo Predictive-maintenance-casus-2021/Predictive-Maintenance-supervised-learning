@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="relative">
     <h2 class="text-xl text-gray-800 font-medium mb-1">{{ name }}</h2>
     <div class="flex items-center">
       <svg
@@ -22,7 +22,6 @@
         >{{ email }}</a
       >
     </div>
-
     <div class="flex items-center">
       <svg width="24" height="24" fill="currentColor" class="text-gray-500">
         <path
