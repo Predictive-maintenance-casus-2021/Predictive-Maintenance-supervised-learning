@@ -130,14 +130,14 @@
     </div>
 
     <h2 class="text-3xl text-gray-900 font-bold mb-6">Data visualisaties</h2>
-    <div class="w-full bg-red-100 rounded overflow-hidden" style="height: 500px;">
-      <LineChart :data="data" />
+    <div class="w-full rounded border border-1 overflow-hidden shadow-xl">
+      <LineChart />
     </div>
   </div>
 </template>
 
 <script>
-import LineChart from "../components/LineChart";
+import LineChart from "../components/LineChart.vue";
 export default {
   name: "Home",
   components: {LineChart},
