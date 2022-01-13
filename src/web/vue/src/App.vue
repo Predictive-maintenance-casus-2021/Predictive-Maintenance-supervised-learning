@@ -1,37 +1,19 @@
 <template>
-  <div id="app">
-    <!--- The menu on the left --->
-    <NavBar />
-    <InfoPage v-if="pageName === 'info'"> </InfoPage>
+  <div id="app" class="font-sans flex h-screen w-screen">
+    <navigation />
+
+    <div class="w-full mt-4 px-4 lg:px-32">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-// All imports
-import InfoPage from "./pages/InfoPage";
-import NavBar from "./components/NavBar";
+import Navigation from "./components/Navigation";
 
 export default {
-  name: "App",
-  data: function () {
-    return {
-      pageName: this.pageName,
-    };
-  },
   components: {
-    NavBar,
-    InfoPage,
+    Navigation,
   },
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

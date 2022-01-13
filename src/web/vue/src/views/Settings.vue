@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>Info page</h1>
+    <h1 class="text-4xl text-gray-900 font-bold">Settings</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "InfoPage",
+  name: "Settings",
 };
 </script>
 
