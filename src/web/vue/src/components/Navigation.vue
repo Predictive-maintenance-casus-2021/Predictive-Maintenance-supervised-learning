@@ -1,10 +1,10 @@
 <template>
-  <div class="sticky top-0 bg-green-700 h-screen" style="width: 4%;">
+  <div class="sticky top-0 bg-green-700 h-screen" style="width: 4%">
     <div class="flex flex-col items-center mt-4">
-      <router-link to="/" class="mb-8">
+      <router-link to="/" class="mb-12">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-10 w-10 fill-current text-gray-200 drop-shadow-md hover:text-white"
+          class="h-8 w-8 fill-current text-gray-200 drop-shadow-md hover:text-white"
           viewBox="0 0 20 20"
         >
           <path
@@ -16,7 +16,7 @@
       <router-link to="/model" class="mb-12">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-10 w-10 fill-current text-gray-200 drop-shadow-md hover:text-white hover:scale-125"
+          class="h-8 w-8 fill-current text-gray-200 drop-shadow-md hover:text-white hover:scale-125"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -31,7 +31,7 @@
       <router-link to="/settings" class="mb-12">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-10 w-10 fill-current text-gray-200 drop-shadow-md hover:text-white hover:scale-125"
+          class="h-8 w-8 fill-current text-gray-200 drop-shadow-md hover:text-white hover:scale-125"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -46,7 +46,7 @@
       <router-link to="/information" class="mb-12">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-10 w-10 fill-current text-gray-200 drop-shadow-md hover:text-white"
+          class="h-8 w-8 fill-current text-gray-200 drop-shadow-md hover:text-white"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -69,6 +69,6 @@ export default {
 
 <style scoped>
 a:hover {
- transform: scale(1.25);
+  transform: scale(1.25);
 }
 </style>
