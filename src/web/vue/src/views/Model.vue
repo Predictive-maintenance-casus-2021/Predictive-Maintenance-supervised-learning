@@ -5,14 +5,19 @@
     <!-- Selection module -->
     <div class="flex shadow-xl border border-1 mb-24 mt-12 w-2/6">
       <a class="ml-4 mt-2 text-normal">Selecteer functie:</a>
-      <select class="bg-gray-100 border border-2 rounded ml-6 mt-2 mb-2 w-52" v-model="selected">
+      <select
+        class="bg-gray-100 border border-2 rounded ml-6 mt-2 mb-2 w-52"
+        v-model="selected"
+      >
         <option disabled value="">Alstublieft selecteer</option>
         <option>Cooler condition</option>
         <option>Valve condition</option>
         <option>Internal pump leakage</option>
         <option>Hydraulic accumulator</option>
       </select>
-      <button class="w-16 rounded font-medium shadow-xl ml-12 mt-2 mb-2 bg-green-200 hover:bg-green-400 hover:border-1">
+      <button
+        class="w-16 rounded font-medium shadow-xl ml-12 mt-2 mb-2 bg-green-200 hover:bg-green-400 hover:border-1"
+      >
         Load
       </button>
     </div>
@@ -21,15 +26,14 @@
     <div class="flex">
       <div
         class="w-72 border border-1 shadow-xl rounded mr-56"
-        style="overflow: hidden; position: relative;"
+        style="overflow: hidden; position: relative"
       >
         <p
           class="ml-4 font-medium text-xl mt-4"
           :class="{
             'text-green-500': feature.accuracy >= 0.8,
             'text-red-500': feature.accuracy <= 0.5,
-            'text-yellow-500':
-              feature.accuracy > 0.5 && feature.accuracy < 0.8,
+            'text-yellow-500': feature.accuracy > 0.5 && feature.accuracy < 0.8,
           }"
         >
           {{ feature.name }}
@@ -47,7 +51,7 @@
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          style="right: -12.5%; transform:rotate(20deg)"
+          style="right: -12.5%; transform: rotate(20deg)"
         >
           <path
             stroke-linecap="round"
