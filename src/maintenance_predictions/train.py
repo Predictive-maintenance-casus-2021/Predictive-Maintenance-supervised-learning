@@ -40,6 +40,7 @@ def train_model(data, epochs=100, early_stopping_patience=10):
 
     early_stopping = tf.keras.callbacks.EarlyStopping(
         monitor="val_loss",
+        mode="min",
         patience=early_stopping_patience
     )
 

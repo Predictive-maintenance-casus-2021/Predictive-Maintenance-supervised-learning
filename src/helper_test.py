@@ -1,4 +1,3 @@
-from matplotlib import pyplot as plt
 from maintenance_predictions import dataset, preprocess, train, evaluate, visualisation
 
 if __name__ == "__main__":
@@ -31,7 +30,7 @@ if __name__ == "__main__":
     models = train.train_multiple_model(
         preprocessed_data,
         epochs=100,
-        early_stopping_patience=10
+        early_stopping_patience=25
     )
 
     print("[!] Evaluating models...")
