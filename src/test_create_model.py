@@ -4,7 +4,7 @@ if __name__ == "__main__":
     print("[!] Loading dataset...")
     dataset = dataset.load_dataset()
 
-    print("[!] Preprocessing dataset...")
+    print("\n[!] Preprocessing dataset...")
     preprocessed_data = preprocess.preprocess_data(
         dataset,
         {
@@ -26,14 +26,14 @@ if __name__ == "__main__":
         random_state=0
     )
 
-    print("[!] Training models...")
+    print("\n[!] Training models...")
     models = train.train_multiple_model(
         preprocessed_data,
         epochs=100,
         early_stopping_patience=25
     )
 
-    print("[!] Evaluating models...")
+    print("\n[!] Evaluating models...")
     for name, model in models.items():
         print("\n", name, "\n", "=" * 50, sep="")
 
@@ -58,6 +58,6 @@ if __name__ == "__main__":
             name + " Confusion Matrix"
         ).show()
 
+    print("\n[!] Saving models...")
+    for name, model in models.items():
         model.save(name, "../models")
-
-    dataset.head()
