@@ -29,9 +29,13 @@
           <input type="number" id="future" name="future" class="border border-1 border-gray-500 rounded w-full px-3 py-1">
         </div>
         <div class="flex mb-2">
+          <label for="patience" class="w-1/4 mr-4 text-lg font-medium text-gray-900">Patience</label>
+          <input type="number" id="patience" name="patience" class="border border-1 border-gray-500 rounded w-full px-3 py-1">
+        </div>
+        <div class="flex mb-2">
           <label for="earlyStopping" class="mr-20 text-lg font-medium text-gray-900">EarlyStopping</label>
-          <input type="checkbox" id="earlyStopping" name="earlyStopping" v-model="earlyStopping" class="border border-1 border-gray-500 rounded mt-2 mr-4" style="transform: scale(1.5)">
-          <label for="earlyStopping" class="text-lg"> {{earlyStopping}}</label>
+          <input type="checkbox" id="earlyStopping" name="earlyStopping" checked="checked" disabled="true" class="border border-1 border-gray-500 rounded mt-2 mr-4" style="transform: scale(1.5)">
+          <label for="earlyStopping" class="text-lg"> true</label>
         </div>
         <div class="flex mb-2">
           <label for="epochs" class="w-1/4 mr-4 text-lg font-medium text-gray-900">Epochs</label>
@@ -54,7 +58,7 @@ export default {
     return {
       predictMinFuture: 1,
       lookback: 0,
-      earlyStopping: false,
+      patience : 0,
       epochs: 50,
       shift: 0,
     };

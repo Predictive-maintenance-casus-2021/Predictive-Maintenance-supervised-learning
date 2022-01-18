@@ -5,22 +5,25 @@
       <div class="w-full max-w-prose mr-8">
         <p class="max-w-prose text-gray-700 leading-relaxed">
           <!--Abstract-->
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          fringilla augue vel porta bibendum. Vivamus a mattis dolor. Ut lectus
-          orci, tincidunt vel eleifend sollicitudin, varius ut turpis. Curabitur
-          vel mi vitae dolor rutrum suscipit. Quisque volutpat nibh leo,
-          imperdiet efficitur metus accumsan eget. In commodo risus eu lacus
-          rhoncus ultricies. Aenean finibus massa elit. Maecenas placerat, dui
-          in gravida sodales, purus tellus pulvinar urna, eget accumsan tortor
-          tellus non arcu <br /><br />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          fringilla augue vel porta bibendum. Vivamus a mattis dolor. Ut lectus
-          orci, tincidunt vel eleifend sollicitudin, varius ut turpis. Curabitur
-          vel mi vitae dolor rutrum suscipit. Quisque volutpat nibh leo,
-          imperdiet efficitur metus accumsan eget. In commodo risus eu lacus
-          rhoncus ultricies. Aenean finibus massa elit. Maecenas placerat, dui
-          in gravida sodales, purus tellus pulvinar urna, eget accumsan tortor
-          tellus non arcu <br /><br />
+          Het lectoraat Data Intelligence van Zuyd hogeschool zag een kans bij
+          het voorspellen van machineonderhoud. Dit product is het gevolg van deze
+          interesse van Zuyd hogeschool. Voorafgaan aan de ontwikkel fase heeft er
+          een onderzoek plaatsgevonden over welke methodieken mogelijk gebruikt konden
+          worden voor het voorspellen van onderhoud. Uit dit onderzoek blijkt dat LSTM het
+          beste aansloot aan de gekozen dataset. Parallel aan de ontwikkeling is het
+          ontwerp gedocumenteerd, dit is in te zien door de verschillende stakeholders.
+          <br /><br />
+          Binnen deze applicatie is het mogelijk om vroegtijdig te acteren voor onderhoud.
+          De applicatie geeft weer wanneer verwacht wordt dat een onderdeel
+          (bijna) defect is. Dit gebeurd op basis van een LSTM model. De gebruiker
+          kan zelf een model inladen, exporteren of aanmaken binnen de applicatie.
+          Tevens heeft de gebruiker de mogelijkheid om de betrouwbaarheid/nauwkeurigheid
+          van het model in te zien op basis van de verschillende 'target' variabelen.
+          Aan de rechter kant ziet u de gehele pipeline van de applicatie. De pipeline
+          geeft weer hoe de applicatie is ingedeeld, van begin tot einde.
+          Voor meer informatie wordt u verwezen naar de bijgeleverde readme, notebook
+          of u kunt een van de ontwikkelaars contacteren.
+          <br /><br />
         </p>
       </div>
       <div class="w-full flex justify-center">
