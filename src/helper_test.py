@@ -1,4 +1,5 @@
-from maintenance_predictions import dataset, preprocess, train, evaluate
+from matplotlib import pyplot as plt
+from maintenance_predictions import dataset, preprocess, train, evaluate, visualisation
 
 if __name__ == "__main__":
     print("[!] Loading dataset...")
@@ -29,7 +30,7 @@ if __name__ == "__main__":
     print("[!] Training models...")
     models = train.train_multiple_model(
         preprocessed_data,
-        epochs=5,
+        epochs=100,
         early_stopping_patience=10
     )
 
@@ -50,5 +51,14 @@ if __name__ == "__main__":
             f"F1-score: {f1_score}\n",
             sep=""
         )
+
+        visualisation.confusion_matrix(
+            model,
+            preprocessed_data[name].model_data.x_validation,
+            preprocessed_data[name].model_data.y_validation,
+            name + " Confusion Matrix"
+        ).show()
+
+        model.save(name, "../models")
 
     dataset.head()
