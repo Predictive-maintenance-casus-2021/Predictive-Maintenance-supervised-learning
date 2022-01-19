@@ -30,8 +30,16 @@ class ClassificationModel:
         if y.ndim == 1:
             y = y.reshape(-1, 1)
 
-        inverse_scaler = self.transformers.y_scaler.inverse_transform(y)
-        inverse_encoder = self.transformers.encoder.inverse_transform(np.round(inverse_scaler).astype(int).ravel())
+        encoder_labels = self.transformers.encoder.transform(self.transformers.encoder.classes_)
+        labels_id = np.round(self.transformers.y_scaler.inverse_transform(y)).astype(int).ravel()
+        for i in range(0, len(labels_id)):
+            if not labels_id[i] in encoder_labels:
+                nearest_label = min(encoder_labels, key=lambda x: abs(x - labels_id[i]))
+                print(f"[!] WARNING: Model made prediction {labels_id[i]}, which is not in the labels {encoder_labels}. This has been fixed by giving it the nearest value, which is {nearest_label}.")
+
+                labels_id[i] = nearest_label
+
+        inverse_encoder = self.transformers.encoder.inverse_transform(labels_id)
 
         return inverse_encoder
 
