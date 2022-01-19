@@ -1,16 +1,7 @@
-import os
-from maintenance_predictions import dataset, preprocess, evaluate, visualisation
-from maintenance_predictions import model as mdl
+from maintenance_predictions import dataset, preprocess, train, evaluate, visualisation
 
 if __name__ == "__main__":
-    print("[!] Loading saved models...")
-    models = {}
-    for model in [[file.name.replace("_", " "), file.path] for file in os.scandir("../models/") if file.is_dir()]:
-        print(f"   [!] Loading {model[0]} model...")
-
-        models[model[0]] = mdl.load_model(model[1])
-
-    print("\n[!] Loading dataset...")
+    print("[!] Loading dataset...")
     dataset = dataset.load_dataset()
 
     print("\n[!] Preprocessing dataset...")
@@ -35,7 +26,14 @@ if __name__ == "__main__":
         random_state=0
     )
 
-    print("\n[!] Evaluating saved models...")
+    print("\n[!] Training models...")
+    models = train.train_multiple_model(
+        preprocessed_data,
+        epochs=250,
+        early_stopping_patience=25
+    )
+
+    print("\n[!] Evaluating models...")
     for name, model in models.items():
         print("\n", name, "\n", "=" * 50, sep="")
 
@@ -53,9 +51,25 @@ if __name__ == "__main__":
             sep=""
         )
 
-        visualisation.confusion_matrix(
+        confusion_matrix = visualisation.confusion_matrix(
             model,
             preprocessed_data[name].model_data.x_validation,
             preprocessed_data[name].model_data.y_validation,
             name + " Confusion Matrix"
-        ).show()
+        )
+        confusion_matrix.show()
+
+        save_model = None
+        while save_model is None:
+            save_input = input("\n[!] Do you want to save this model? (Y/N) ").casefold()
+            if save_input == "y".casefold():
+                save_model = True
+            elif save_input == "n".casefold():
+                save_model = False
+
+        if save_model:
+            print(f"   [!] Saving {name} model...")
+
+            model.save(name, "../models")
+            confusion_matrix.savefig("../models/" + name.replace(" ", "_").lower() + "/confusion_matrix")
+
