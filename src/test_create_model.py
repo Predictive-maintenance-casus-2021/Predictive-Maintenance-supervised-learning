@@ -29,7 +29,7 @@ if __name__ == "__main__":
     print("\n[!] Training models...")
     models = train.train_multiple_model(
         preprocessed_data,
-        epochs=100,
+        epochs=5,
         early_stopping_patience=25
     )
 
@@ -51,13 +51,28 @@ if __name__ == "__main__":
             sep=""
         )
 
-        visualisation.confusion_matrix(
+        confusion_matrix = visualisation.confusion_matrix(
             model,
             preprocessed_data[name].model_data.x_validation,
             preprocessed_data[name].model_data.y_validation,
             name + " Confusion Matrix"
-        ).show()
+        )
+        confusion_matrix.show()
 
-    print("\n[!] Saving models...")
-    for name, model in models.items():
-        model.save(name, "../models")
+        save_model = None
+        while save_model is None:
+            save_input = input("[!] Do you want to save this model? (Y/N) ").casefold()
+
+            print(save_input.casefold(), "Y".casefold())
+
+            if save_input == "y".casefold():
+                save_model = True
+            elif save_input == "n".casefold():
+                save_model = False
+
+        if save_model:
+            print(f"[!] Saving {name} model...")
+
+            model.save(name, "../models")
+            confusion_matrix.savefig("../models/" + name.replace(" ", "_").lower() + "/confusion_matrix")
+
