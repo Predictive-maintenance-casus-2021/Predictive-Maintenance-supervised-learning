@@ -35,7 +35,7 @@ class ClassificationModel:
         for i in range(0, len(labels_id)):
             if not labels_id[i] in encoder_labels:
                 nearest_label = min(encoder_labels, key=lambda x: abs(x - labels_id[i]))
-                print(f"[!] WARNING: Model made prediction {labels_id[i]}, which is not in the labels {encoder_labels}. This has been fixed by giving it the nearest value, which is {nearest_label}.")
+                print(f"[!] WARNING: Model made prediction {labels_id[i]}, which is not in the labels {encoder_labels}. This has been resolved by giving it the nearest value, which is {nearest_label}.")
 
                 labels_id[i] = nearest_label
 

@@ -29,7 +29,7 @@ if __name__ == "__main__":
     print("\n[!] Training models...")
     models = train.train_multiple_model(
         preprocessed_data,
-        epochs=5,
+        epochs=250,
         early_stopping_patience=25
     )
 
@@ -61,17 +61,14 @@ if __name__ == "__main__":
 
         save_model = None
         while save_model is None:
-            save_input = input("[!] Do you want to save this model? (Y/N) ").casefold()
-
-            print(save_input.casefold(), "Y".casefold())
-
+            save_input = input("\n[!] Do you want to save this model? (Y/N) ").casefold()
             if save_input == "y".casefold():
                 save_model = True
             elif save_input == "n".casefold():
                 save_model = False
 
         if save_model:
-            print(f"[!] Saving {name} model...")
+            print(f"   [!] Saving {name} model...")
 
             model.save(name, "../models")
             confusion_matrix.savefig("../models/" + name.replace(" ", "_").lower() + "/confusion_matrix")
