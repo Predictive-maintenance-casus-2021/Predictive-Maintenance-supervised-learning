@@ -23,7 +23,7 @@ class DataTransformers:
         self.y_scaler = y_scaler
 
 
-def preprocess_data(df, labels, test_size=0.2, history_window=10, future_window=30, shift=1, random_state=1):
+def preprocess_data(df, labels, test_size=0.2, history_window=10, future_window=30, shift=1, random_state=1, shuffle=True):
     preprocessed_df = df.copy()
 
     data = {}
@@ -39,7 +39,8 @@ def preprocess_data(df, labels, test_size=0.2, history_window=10, future_window=
             x_data,
             y_data,
             test_size=test_size,
-            random_state=random_state
+            random_state=random_state,
+            shuffle=shuffle
         )
 
         model_data = ModelData(x_train, y_train, x_validation, y_validation)
