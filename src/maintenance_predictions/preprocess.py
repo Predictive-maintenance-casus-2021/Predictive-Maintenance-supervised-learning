@@ -46,7 +46,7 @@ def preprocess_data(df, labels, test_size=0.2, history_window=10, future_window=
         model_data = ModelData(x_train, y_train, x_validation, y_validation)
         data_transformers = DataTransformers(encoder, x_scaler, y_scaler)
 
-        data[y.lower()] = TrainData(
+        data[y.lower().replace(" ", "_")] = TrainData(
             model_data,
             data_transformers
         )
