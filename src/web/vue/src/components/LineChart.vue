@@ -1,6 +1,11 @@
 <template>
   <div class="w-full h-full">
-    <canvas id="line-chart" width="full" height="full"></canvas>
+    <canvas
+      id="line-chart"
+      width="full"
+      height="full"
+      v-show="this.data.cooler_condition"
+    ></canvas>
   </div>
 </template>
 
@@ -9,61 +14,106 @@ import Chart from "chart.js";
 
 export default {
   name: "LineChart",
-  props: {
-    labels: Array,
-    datasets: Array,
+  data() {
+    return {
+      data: {
+        cooler_condition: [],
+        valve_condition: [],
+        internal_pump_leakage: [],
+        hydraulic_accumulator: [],
+      },
+    };
+  },
+  computed: {
+    labels() {
+      let labels = [];
+      for (let i = 0; i < this.data.cooler_condition.length; i++) {
+        labels.push(i);
+      }
+
+      return labels;
+    },
   },
   mounted() {
-    let ctx = document.getElementById("line-chart");
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: [0, 1, 2, 3, 4, 5],
-        datasets: [
-          {
-            label: "Cooler condition",
-            data: [100, 100, 100, 20, 20, 3],
-            borderColor: "rgb(255,93,93)",
-            backgroundColor: "rgba(255,117,117,0.5)",
-          },
-          {
-            label: "Valve condition",
-            data: [100, 100, 90, 80, 73, 73],
-            borderColor: "rgb(122,248,122)",
-            backgroundColor: "rgba(151,255,151,0.5)",
-          },
-          {
-            label: "Internal pump leakage",
-            data: [0, 0, 0, 1, 1, 2],
-            borderColor: "rgb(125,125,255)",
-            backgroundColor: "rgba(166,166,255,0.5)",
-          },
-          {
-            label: "Hydraulic accumulator",
-            data: [130, 115, 115, 100, 90, 90],
-            borderColor: "rgb(211,255,122)",
-            backgroundColor: "rgba(250,255,144,0.5)",
-          },
-        ],
-      },
-      options: {
-        maintainAspectRatio: false,
-        responsive: true,
-        scales: {
-          yAxes: [
+    this.loadData();
+  },
+  methods: {
+    loadData() {
+      this.$http.get("/api/predictions/history").then((response) => {
+        this.data = response.data;
+
+        this.makeChart();
+      });
+    },
+    makeChart() {
+      console.log("Loading chart...");
+      let ctx = document.getElementById("line-chart");
+      let chart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: this.labels,
+          datasets: [
             {
-              display: true,
-              ticks: {
-                min: 0, // minimum will be 0, unless there is a lower value.
-                // OR //
-                beginAtZero: true, // minimum value will be 0.
-                stepSize: 10,
-              },
+              label: "Cooler condition",
+              data: this.data.cooler_condition,
+              borderColor: "rgb(255,93,93)",
+              backgroundColor: "rgba(255,117,117,0.5)",
+            },
+            {
+              label: "Valve condition",
+              data: this.data.valve_condition,
+              borderColor: "rgb(122,248,122)",
+              backgroundColor: "rgba(151,255,151,0.5)",
+            },
+            {
+              label: "Internal pump leakage",
+              data: this.data.internal_pump_leakage,
+              borderColor: "rgb(125,125,255)",
+              backgroundColor: "rgba(166,166,255,0.5)",
+            },
+            {
+              label: "Hydraulic accumulator",
+              data: this.data.hydraulic_accumulator,
+              borderColor: "rgb(211,255,122)",
+              backgroundColor: "rgba(250,255,144,0.5)",
             },
           ],
         },
-      },
-    });
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          scales: {
+            yAxes: [
+              {
+                display: true,
+                ticks: {
+                  min: 0, // minimum will be 0, unless there is a lower value.
+                  // OR //
+                  beginAtZero: true, // minimum value will be 0.
+                  stepSize: 10,
+                },
+              },
+            ],
+          },
+        },
+      });
+
+      setInterval(() => {
+        this.loadData();
+
+        this.updateChart(chart);
+      }, 30 * 1000);
+    },
+    updateChart(chart) {
+      chart.data.labels = this.labels;
+      chart.data.datasets.forEach((dataset) => {
+        let label = dataset.label.replace(/\s+/g, "_").toLowerCase();
+
+        dataset.data = this.data[label];
+      });
+
+      chart.update();
+    },
   },
 };
 </script>
