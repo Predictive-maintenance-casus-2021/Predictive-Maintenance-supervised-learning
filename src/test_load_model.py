@@ -5,7 +5,7 @@ from maintenance_predictions import model as mdl
 if __name__ == "__main__":
     print("[!] Loading saved models...")
     models = {}
-    for model in [[file.name.replace("_", " "), file.path] for file in os.scandir("../models/") if file.is_dir()]:
+    for model in [[file.name.lower().replace(" ", "_"), file.path] for file in os.scandir("../models/") if file.is_dir()]:
         print(f"   [!] Loading {model[0]} model...")
 
         models[model[0]] = mdl.load_model(model[1])
