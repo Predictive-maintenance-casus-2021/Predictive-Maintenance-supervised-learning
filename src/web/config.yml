@@ -1,0 +1,8 @@
+app:
+  interval: 5
+model:
+  test_size: 0.2
+  history_window: 15
+  future_window: 30
+  shift: 1
+  random_state: 0
