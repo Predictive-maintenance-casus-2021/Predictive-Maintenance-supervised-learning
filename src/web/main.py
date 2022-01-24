@@ -147,7 +147,7 @@ def make_model():
     )
 
     print("\n[!] Evaluating models...")
-    for name, model in models.items():
+    for name, model in trained_models.items():
         confusion_matrix = visualisation.confusion_matrix(
             model,
             preprocessed_data[name].model_data.x_validation,
