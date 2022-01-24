@@ -1,70 +1,86 @@
 <template>
   <div>
-    <h1 class="text-4xl text-gray-900 font-bold mb-6">Model</h1>
+    <h1 class="text-4xl text-gray-900 font-bold mb-6">Model prestaties</h1>
 
-    <!-- Selection module -->
-    <div class="flex shadow-xl border border-1 mb-24 mt-12 w-2/6">
-      <a class="ml-4 mt-2 text-normal">Selecteer functie:</a>
-      <select
-        class="bg-gray-100 border border-2 rounded ml-6 mt-2 mb-2 w-52"
-        v-model="selected"
-      >
-        <option disabled value="">Alstublieft selecteer</option>
-        <option>Cooler condition</option>
-        <option>Valve condition</option>
-        <option>Internal pump leakage</option>
-        <option>Hydraulic accumulator</option>
-      </select>
-      <button
-        class="w-16 rounded font-medium shadow-xl ml-12 mt-2 mb-2 bg-green-200 hover:bg-green-400 hover:border-1"
-      >
-        Load
-      </button>
-    </div>
-
-    <!-- Model information -->
-    <div class="flex">
-      <div
-        class="w-72 border border-1 shadow-xl rounded mr-56"
-        style="overflow: hidden; position: relative"
-      >
-        <p
-          class="ml-4 font-medium text-xl mt-4"
-          :class="{
-            'text-green-500': feature.accuracy >= 0.8,
-            'text-red-500': feature.accuracy <= 0.5,
-            'text-yellow-500': feature.accuracy > 0.5 && feature.accuracy < 0.8,
-          }"
+    <div class="flex justify-start">
+      <div class="w-1/3 mr-16">
+        <div
+          class="w-full bg-white border border-1 px-6 py-4 rounded-lg shadow-xl"
         >
-          {{ feature.name }}
-        </p>
-        <div class="ml-4 mt-6 space-y-2 text-xl">
-          <p>Precision: {{ feature.precision }}</p>
-          <p>Recall: {{ feature.recall }}</p>
-          <p>Accuracy: {{ feature.accuracy }}</p>
-          <p>F1-score: {{ feature.f1Score }}</p>
+          <div class="flex justify-between items-center">
+            <label class="text-base font-medium">Selecteer een model:</label>
+            <select
+              class="rounded-md border-gray-300 shadow-sm focus:border-green-200 focus:ring focus:ring-green-100 focus:ring-opacity-50"
+              v-model="selected_model.name"
+              @change="loadStats()"
+            >
+              <option value="cooler_condition">Cooler condition</option>
+              <option value="valve_condition">Valve condition</option>
+              <option value="internal_pump_leakage">
+                Internal pump leakage
+              </option>
+              <option value="hydraulic_accumulator">
+                Hydraulic accumulator
+              </option>
+            </select>
+          </div>
+
+          <div v-show="selected_model.name">
+            <div
+              class="w-full bg-gray-100 rounded-full mt-2 mb-4"
+              style="height: 1px"
+            ></div>
+            <h2
+              class="capitalize text-xl font-bold text-gray-900 mb-2"
+              :class="{
+                'text-green-500': this.stats.accuracy >= 80,
+                'text-red-500': this.stats.accuracy <= 50,
+                'text-yellow-500':
+                  this.stats.accuracy > 50 && this.stats.accuracy < 80,
+              }"
+            >
+              {{ selected_model.name.replace(/_/g, " ") }}
+            </h2>
+            <div>
+              <div class="mb-2">
+                <h3 class="text-lg font-medium text-gray-800">Accuracy:</h3>
+                <p class="font-base text-gray-700">{{ stats.accuracy }}%</p>
+              </div>
+              <div class="mb-2">
+                <h3 class="text-lg font-medium text-gray-800">Precision:</h3>
+                <p class="font-base text-gray-700">
+                  {{ stats.precision.join("%, ") }}%
+                </p>
+              </div>
+              <div class="mb-2">
+                <h3 class="text-lg font-medium text-gray-800">Recall:</h3>
+                <p class="font-base text-gray-700">
+                  {{ stats.recall.join("%, ") }}%
+                </p>
+              </div>
+              <div class="mb-2">
+                <h3 class="text-lg font-medium text-gray-800">F1-score:</h3>
+                <p class="font-base text-gray-700">
+                  {{ stats.f1_score.join("%, ") }}%
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="absolute h-72 w-72 mt-4 opacity-20"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          style="right: -12.5%; transform: rotate(20deg)"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z"
-          />
-        </svg>
       </div>
-
-      <!-- Image of the model -->
-      <div class="border border-1 shadow-xl rounded mr-96">
-        <img src="@/assets/cooler_condition.png" alt="none" />
+      <div class="h-full">
+        <div
+          class="bg-white border border-1 rounded-lg shadow-xl overflow-hidden"
+          v-show="selected_model.name"
+        >
+          <img
+            class="h-2/5"
+            :src="this.selected_model.img"
+            :alt="
+              this.selected_model.name.replace(/_/g, ' ') + ' confusion matrix'
+            "
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -75,14 +91,27 @@ export default {
   name: "Model",
   data() {
     return {
-      feature: {
-        name: "Cooler condition",
-        precision: [1, 1, 1],
-        recall: [1, 1, 1],
-        accuracy: 1.0,
-        f1Score: [1, 1, 1],
+      selected_model: {
+        name: "",
+        img: "",
+      },
+      stats: {
+        accuracy: 0,
+        precision: [0],
+        recall: [0],
+        f1_score: [0],
       },
     };
+  },
+  methods: {
+    loadStats() {
+      this.$http
+        .get("/api/stats/" + this.selected_model.name)
+        .then((response) => {
+          this.selected_model.img = response.request.responseURL + "/confusion";
+          this.stats = response.data;
+        });
+    },
   },
 };
 </script>

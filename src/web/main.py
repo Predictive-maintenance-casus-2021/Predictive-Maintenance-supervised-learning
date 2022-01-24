@@ -3,7 +3,6 @@ import os
 import webbrowser
 from threading import Thread
 import time
-
 import numpy as np
 from flask import Flask, abort, Response
 from matplotlib.backends.backend_agg import FigureCanvasAgg
@@ -62,10 +61,13 @@ def get_stats(model):
         y_val_data[model]
     )
 
-    print(precision, precision.tolist())
-    print(recall, recall.tolist())
-    print(accuracy, accuracy.tolist())
-    print(f1_score, f1_score.tolist())
+    for i in range(0, len(precision)):
+        precision[i] = np.round(precision[i] * 100, 2)
+        recall[i] = np.round(recall[i] * 100, 2)
+        f1_score[i] = np.round(f1_score[i] * 100, 2)
+
+    accuracy = np.round(accuracy * 100, 2)
+
     return {
         "precision": precision.tolist(),
         "recall": recall.tolist(),
