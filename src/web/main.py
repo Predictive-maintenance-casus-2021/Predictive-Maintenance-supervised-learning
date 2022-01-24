@@ -95,12 +95,10 @@ def get_confusion_matrix(model):
     return Response(output.getvalue(), mimetype="image/png")
 
 
-# ToDo: need to edit later
 @app.route("/api/model/create", methods=["POST"])
 def make_model():
-    print("[!] Training model")
-
-    print(request.get_json())
+    global models, y_predictions
+    print("[!] Starting to train new models...")
 
     data = request.get_json()
 
@@ -169,15 +167,16 @@ def make_model():
             model.save(name, "../models")
             confusion_matrix.savefig("../models/" + name.replace(" ", "_").lower() + "/confusion_matrix")
 
+    with open("config.yml", 'w') as file:
+        yaml.dump(config, file)
+
+    models = {}
+    y_predictions = {}
+    load_models()
+
+    # TODO: Stop current threads.
+    load_data()
     return "OK"
-
-
-# ToDo: add the specific value's
-@app.route("/api/import")
-def import_models():
-    return {
-        print("[!] Get model")
-    }
 
 
 #

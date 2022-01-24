@@ -3,18 +3,6 @@
     <h1 class="text-4xl text-gray-900 font-bold mb-8">Settings</h1>
 
     <div class="max-w-4xl">
-      <div class="flex mb-8">
-        <button
-          class="bg-green-400 rounded shadow px-4 py-1 text-white hover:bg-green-500 mr-4"
-        >
-          Import
-        </button>
-        <button
-          class="bg-green-400 rounded shadow px-4 py-1 text-white hover:bg-green-500"
-        >
-          Export
-        </button>
-      </div>
 
       <form @submit.prevent="train">
         <!--
