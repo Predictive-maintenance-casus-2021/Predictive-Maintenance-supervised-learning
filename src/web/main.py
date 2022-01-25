@@ -167,10 +167,15 @@ def make_model():
         if save_model:
             print(f"   [!] Saving {name} model...")
 
-            model.save(name, "../models")
-            confusion_matrix.savefig("../models/" + name.replace(" ", "_").lower() + "/confusion_matrix")
+            model.save(name, "../../models")
+            confusion_matrix.savefig("../../models/" + name.replace(" ", "_").lower() + "/confusion_matrix")
 
     with open("config.yml", 'w') as file:
+        config["saved_model_location"] = "../../models"
+        config["model"]["future_window"] = future_window
+        config["model"]["history_window"] = history_window
+        config["model"]["random_state"] = random_state
+        config["model"]["shift"] = shift
         yaml.dump(config, file)
 
     # Prediction variables
@@ -207,7 +212,7 @@ def load_models():
     global models, y_predictions
 
     print("[!] Loading saved models...")
-    for model in [[file.name.lower().replace(" ", "_"), file.path] for file in os.scandir("../../models") if
+    for model in [[file.name.lower().replace(" ", "_"), file.path] for file in os.scandir(config.get("saved_model_location", "../../best_models")) if
                   file.is_dir()]:
         print(f"   [!] Loading {model[0]} model...")
 
@@ -233,11 +238,19 @@ def load_data():
         # Might be added in the future.
         # "Stable flag": []
     }
-    test_size = config.get("model.test_size", 0.2)
-    history_window = config.get("model.history_window", 15)
-    future_window = config.get("model.future_window", 30)
-    shift = config.get("model.shift", 1)
-    random_state = config.get("model.random_state", 0)
+    saved_model_location = config.get("saved_model_location", "../../best_models")
+    if saved_model_location == "../../best_models":
+        test_size = config.get("best_model.test_size", 0.2)
+        history_window = config.get("best_model.history_window", 15)
+        future_window = config.get("best_model.future_window", 30)
+        shift = config.get("best_model.shift", 1)
+        random_state = config.get("best_model.random_state", 0)
+    else:
+        test_size = config.get("model.test_size", 0.2)
+        history_window = config.get("model.history_window", 15)
+        future_window = config.get("model.future_window", 30)
+        shift = config.get("model.shift", 1)
+        random_state = config.get("model.random_state", 0)
 
     models_data = preprocess.preprocess_data(
         data,
