@@ -156,7 +156,7 @@ export default {
   },
   methods: {
     train() {
-      this.model_message = "Currently training the models, please wait this can take a while...";
+      this.model_message = "Momenteel wordt het model getraind, dit kan even duren...";
       this.$modal.show("train-model");
       this.$http
           .post("/api/model/create", {
@@ -167,9 +167,9 @@ export default {
             epochs: parseInt(this.epochs),
             patience: parseInt(this.patience),
           }).then(() => {
-            this.model_message = "The models have been trained, please restart the backend to use them...";
+            this.model_message = "De modellen zijn getraind, de backend wordt herstart...";
           }).catch(() => {
-            this.model_message = "There was an error training the new models, please try again...";
+            this.model_message = "Er is een error tijdens het trainen van de nieuwe modellen, probeer dit opnieuw...";
           }).finally(() => {
             setTimeout(() => {
               this.$modal.hide("train-model");
