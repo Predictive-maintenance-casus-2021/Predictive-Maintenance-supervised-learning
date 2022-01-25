@@ -1,14 +1,11 @@
 import io
 import os
-import subprocess
-
 import yaml
-import sys
 import webbrowser
 from threading import Thread
 import time
 import numpy as np
-from flask import Flask, Response, request, abort
+from flask import Flask, Response, request, abort, render_template
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from src.maintenance_predictions import dataset, preprocess, evaluate, visualisation, train
 from src.maintenance_predictions import model as mdl
@@ -30,6 +27,11 @@ config = {}
 #
 # Routes
 #
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 
 @app.route("/api/predictions")
@@ -300,17 +302,6 @@ def load_new_data_every_loop(name, data, i=1):
             load_new_data_every_loop(name, data, i + 1)
 
 
-# Allows communication between the front and backend server
-# TODO: get rid of when build fully
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', 'http://localhost:8080')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    response.headers.add('Access-Control-Allow-Credentials', 'true')
-    return response
-
-
 if __name__ == "__main__":
     # Load the settings for models
     load_config()
@@ -322,9 +313,8 @@ if __name__ == "__main__":
     Thread(target=load_data).start()
 
     # Automatically open the browser, if the reload has not yet run
-    # TODO: turn on when build is done (keep of while developing)
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
-        webbrowser.open_new('http://127.0.0.1:5000/api/predictions')
+        webbrowser.open_new('http://127.0.0.1:5000/')
 
     # Otherwise, continue as normal
-    app.run(host="127.0.0.1", use_reloader=False)
+    app.run(host="", port=5000, use_reloader=False)
