@@ -265,24 +265,28 @@
 
 <script>
 import LineChart from "../components/LineChart.vue";
+
 export default {
   name: "Home",
   components: { LineChart },
   data() {
     return {
-      predictions: {
-        cooler_condition: 20,
-        valve_condition: 90,
-        internal_pump_leakage: 2,
-        hydraulic_accumulator: 90,
-      },
-      data: {
-        cooler_condition: [100, 100, 100, 20, 20, 3],
-        valve_condition: [100, 100, 90, 80, 73, 73],
-        internal_pump_leakage: [0, 0, 0, 1, 1, 2],
-        hydraulic_accumulator: [130, 115, 115, 100, 90, 90],
-      },
+      predictions: {},
     };
+  },
+  mounted() {
+    this.loadData();
+
+    setInterval(() => {
+      this.loadData();
+    }, 5000);
+  },
+  methods: {
+    loadData() {
+      this.$http.get("/api/predictions").then((response) => {
+        this.predictions = response.data;
+      });
+    },
   },
   computed: {
     warnings() {

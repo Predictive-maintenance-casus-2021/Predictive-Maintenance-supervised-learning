@@ -30,7 +30,7 @@ if __name__ == "__main__":
     models = train.train_multiple_model(
         preprocessed_data,
         epochs=250,
-        early_stopping_patience=25
+        early_stopping_patience=50
     )
 
     print("\n[!] Evaluating models...")
@@ -72,4 +72,3 @@ if __name__ == "__main__":
 
             model.save(name, "../models")
             confusion_matrix.savefig("../models/" + name.replace(" ", "_").lower() + "/confusion_matrix")
-

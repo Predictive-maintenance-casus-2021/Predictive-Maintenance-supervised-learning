@@ -6,23 +6,25 @@
         <p class="max-w-prose text-gray-700 leading-relaxed">
           <!--Abstract-->
           Het lectoraat Data Intelligence van Zuyd hogeschool zag een kans bij
-          het voorspellen van machineonderhoud. Dit product is het gevolg van deze
-          interesse van Zuyd hogeschool. Voorafgaan aan de ontwikkel fase heeft er
-          een onderzoek plaatsgevonden over welke methodieken mogelijk gebruikt konden
-          worden voor het voorspellen van onderhoud. Uit dit onderzoek blijkt dat LSTM het
-          beste aansloot aan de gekozen dataset. Parallel aan de ontwikkeling is het
-          ontwerp gedocumenteerd, dit is in te zien door de verschillende stakeholders.
+          het voorspellen van machineonderhoud. Dit product is het gevolg van
+          deze interesse van Zuyd hogeschool. Voorafgaan aan de ontwikkel fase
+          heeft er een onderzoek plaatsgevonden over welke methodieken mogelijk
+          gebruikt konden worden voor het voorspellen van onderhoud. Uit dit
+          onderzoek blijkt dat LSTM het beste aansloot aan de gekozen dataset.
+          Parallel aan de ontwikkeling is het ontwerp gedocumenteerd, dit is in
+          te zien door de verschillende stakeholders.
           <br /><br />
-          Binnen deze applicatie is het mogelijk om vroegtijdig te acteren voor onderhoud.
-          De applicatie geeft weer wanneer verwacht wordt dat een onderdeel
-          (bijna) defect is. Dit gebeurd op basis van een LSTM model. De gebruiker
-          kan zelf een model inladen, exporteren of aanmaken binnen de applicatie.
-          Tevens heeft de gebruiker de mogelijkheid om de betrouwbaarheid/nauwkeurigheid
-          van het model in te zien op basis van de verschillende 'target' variabelen.
-          Aan de rechter kant ziet u de gehele pipeline van de applicatie. De pipeline
-          geeft weer hoe de applicatie is ingedeeld, van begin tot einde.
-          Voor meer informatie wordt u verwezen naar de bijgeleverde readme, notebook
-          of u kunt een van de ontwikkelaars contacteren.
+          Binnen deze applicatie is het mogelijk om vroegtijdig te acteren voor
+          onderhoud. De applicatie geeft weer wanneer verwacht wordt dat een
+          onderdeel (bijna) defect is. Dit gebeurd op basis van een LSTM model.
+          De gebruiker kan zelf een model inladen, exporteren of aanmaken binnen
+          de applicatie. Tevens heeft de gebruiker de mogelijkheid om de
+          betrouwbaarheid/nauwkeurigheid van het model in te zien op basis van
+          de verschillende 'target' variabelen. Aan de rechter kant ziet u de
+          gehele pipeline van de applicatie. De pipeline geeft weer hoe de
+          applicatie is ingedeeld, van begin tot einde. Voor meer informatie
+          wordt u verwezen naar de bijgeleverde readme, notebook of u kunt een
+          van de ontwikkelaars contacteren.
           <br /><br />
         </p>
       </div>

@@ -171,3 +171,4 @@ dmypy.json
 
 # Extra
 .ipynb_checkpoints
+src/web/vue/package-lock.json
