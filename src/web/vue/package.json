@@ -17,6 +17,7 @@
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "vue": "^2.6.11",
+    "vue-js-modal": "^2.0.1",
     "vue-router": "^3.2.0"
   },
   "devDependencies": {

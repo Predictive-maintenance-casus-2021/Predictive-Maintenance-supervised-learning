@@ -1,6 +1,9 @@
 import io
 import os
+import subprocess
+
 import yaml
+import sys
 import webbrowser
 from threading import Thread
 import time
@@ -97,7 +100,7 @@ def get_confusion_matrix(model):
 
 @app.route("/api/model/create", methods=["POST"])
 def make_model():
-    global models, y_predictions
+    global models, y_predictions, x_val_data, y_val_data, config
     print("[!] Starting to train new models...")
 
     data = request.get_json()
@@ -170,13 +173,21 @@ def make_model():
     with open("config.yml", 'w') as file:
         yaml.dump(config, file)
 
+    # Prediction variables
     models = {}
     y_predictions = {}
-    load_models()
 
-    # TODO: Stop current threads.
-    load_data()
-    return "OK"
+    # Model evaluation
+    x_val_data = {}
+    y_val_data = {}
+
+    # Restarting the backend when there is a nieuw model made.
+    print("restart backend")
+    load_models()
+    # Load the data that's used for predictions.
+    Thread(target=load_data).start()
+
+    return "Done"
 
 
 #
@@ -266,12 +277,14 @@ def load_new_data_every_loop(name, data, i=1):
     x_data = data[:i]
 
     # Make predictions on data.
-    prediction = models.get(name).predict(x_data)
-    y_predictions.get(name).append(int(prediction[-1]))
+    model = models.get(name)
+    if model:
+        prediction = models.get(name).predict(x_data)
+        y_predictions.get(name).append(int(prediction[-1]))
 
-    if i < len(data):
-        time.sleep(config.get("app.interval", 5))
-        load_new_data_every_loop(name, data, i + 1)
+        if i < len(data):
+            time.sleep(config.get("app.interval", 5))
+            load_new_data_every_loop(name, data, i + 1)
 
 
 # Allows communication between the front and backend server
