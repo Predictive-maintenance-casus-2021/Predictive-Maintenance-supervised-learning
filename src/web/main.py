@@ -1,5 +1,6 @@
-import io
 import os
+import sys
+import io
 import yaml
 import webbrowser
 from threading import Thread
@@ -7,8 +8,11 @@ import time
 import numpy as np
 from flask import Flask, Response, request, abort, render_template
 from matplotlib.backends.backend_agg import FigureCanvasAgg
-from src.maintenance_predictions import dataset, preprocess, evaluate, visualisation, train
-from src.maintenance_predictions import model as mdl
+
+# Imported this way to make sure the module can be found.
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from maintenance_predictions import dataset, preprocess, evaluate, visualisation, train
+from maintenance_predictions import model as mdl
 
 app = Flask(__name__)
 
@@ -214,7 +218,8 @@ def load_models():
     global models, y_predictions
 
     print("[!] Loading saved models...")
-    for model in [[file.name.lower().replace(" ", "_"), file.path] for file in os.scandir(config.get("saved_model_location", "../../best_models")) if
+    for model in [[file.name.lower().replace(" ", "_"), file.path] for file in
+                  os.scandir(config.get("saved_model_location", "../../best_models")) if
                   file.is_dir()]:
         print(f"   [!] Loading {model[0]} model...")
 

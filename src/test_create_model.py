@@ -70,5 +70,5 @@ if __name__ == "__main__":
         if save_model:
             print(f"   [!] Saving {name} model...")
 
-            model.save(name, "../models")
-            confusion_matrix.savefig("../models/" + name.replace(" ", "_").lower() + "/confusion_matrix")
+            model.save(name, "../best_models")
+            confusion_matrix.savefig("../best_models/" + name.replace(" ", "_").lower() + "/confusion_matrix")
