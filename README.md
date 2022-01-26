@@ -4,18 +4,34 @@ A predictive maintenance proof-of-concept which uses machine learning (Long-Shor
 This repo includes:
 
 * A Jupyter Notebook which explains generating a model and predictions for one target-variable,
-* A web interface using VueJS and Flask (python backend),
+* A web interface using VueJS and Flask (Python backend),
 * a few python scripts which the web interface uses, but can be used as standalone scripts to generate models and predictions.
 
 ## 1. Editing/contributing
 
 In order to edit the source code, you'll need to install the required languages, packages, etc.
 
-Step 1. Get (at least) [Python version 3.7.8](https://www.python.org/downloads/)
+### Installation
 
-step 2. Clone this repo onto your machine. If you use PIP, we recommend creating a [python virtual environment](https://docs.python.org/3/tutorial/venv.html)
+#### Anaconda
+We advise installing the packages for this repository using Anaconda, there is an option to install this using pip but this can cause issues.
+- Step 1. Clone this repository onto your machine. 
+- Step 2. Download and install [Anaconda](https://anaconda.com).
+- Step 3. Open the Anaconda Powershell Prompt.
+- Step 4. Execute the command `conda env create -f requirements_conda.yml` and install the required packages, make sure to execute this command in this folder, or reference this command.
+- Step 5. Activate your installed environment using `conda activate BD04`.
+- Step 6. You can now execute the `main.py` file in `src/web/` in your conda environment to start the application.
 
-Step 3. [Install all neccesary packages from the requirements.txt file.](https://stackoverflow.com/questions/7225900/how-can-i-install-packages-using-pip-according-to-the-requirements-txt-file-from)
+#### PIP
+Installing the application this way can cause issues.
+
+#### NPM
+These steps are **optional** and only need to be done if you are planning on **changing** the frontend.
+- Step 1. Clone this repository onto your machine if you have not done this yet. 
+- Step 2. Download and install [NPM](https://nodejs.org/en/download/), we recommend installing the LTS version.
+- Step 3. Go to `/src/web/vue/` in your command prompt of choice.
+- Step 4. Execute the command `npm install`, to install all the packages used for the frontend.
+- Step 5. Now you can run the command `npm run serve` to run a development build of the app. When you have finished developing the frontend you can run `npm run build` to have it replace the items on the Flask server.
 
 ### 1.1. Jupyter Notebook
 
