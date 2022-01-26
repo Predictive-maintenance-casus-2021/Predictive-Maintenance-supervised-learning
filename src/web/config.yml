@@ -1,0 +1,15 @@
+app:
+  interval: 5
+best_model:
+  future_window: 30
+  history_window: 15
+  random_state: 0
+  shift: 1
+  test_size: 0.2
+model:
+  future_window: 3
+  history_window: 3
+  random_state: 0
+  shift: 1
+  test_size: 0.2
+saved_model_location: ../../best_models
