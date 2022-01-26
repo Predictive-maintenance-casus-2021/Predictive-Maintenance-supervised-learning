@@ -23,8 +23,8 @@ We advise installing the packages for this repository using Anaconda, there is a
 - Step 4. In your terminal navigate to the folder you cloned the repository into `cd "filelocation"`.
 - Step 5. Execute the command `conda env create -f requirements_conda.yml` and install the required packages..
 - Step 6. Activate your installed environment using `conda activate BD04`.
-- Step 6. In your terminal navigate to the `cd src/web` folder.
-- Step 7. Execute the `python main.py` command while in your Anaconda environment and the src/web folder.
+- Step 7. In your terminal navigate to the `cd src/web` folder.
+- Step 8. Execute the `python main.py` command while in your Anaconda environment and the src/web folder.
 
 #### 1.2.2. PIP
 Installing the application this way can cause issues.
@@ -58,7 +58,8 @@ If you want to launch the notebook, pen a terminal and navigate to the folder of
 
 ### 2.2. Web server
 
-@cedric iets zeggen over de webserver, of je dit met docker doet ofzo. minimale om te runnen
+Make sure you have followed the steps described earlier to use the web server. 
+To start the webserver run `main.py` in `src/web/`.
 
 ### 2.3. Standalone python files
 
