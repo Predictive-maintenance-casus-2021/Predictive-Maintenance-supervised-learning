@@ -9,11 +9,13 @@ This repo includes:
 
 ## 1. Editing/contributing
 
-In order to edit the source code, you'll need to install the required languages, packages, etc.
+### 1.1. Jupyter Notebook
 
-### Installation
+Either install [Jupyter notebook with mamba, conda, or pip](https://jupyter.org/install). 
 
-#### Anaconda
+### 1.2. Web server
+
+#### 1.2.1. Anaconda
 We advise installing the packages for this repository using Anaconda, there is an option to install this using pip but this can cause issues.
 - Step 1. Clone this repository onto your machine. 
 - Step 2. Download and install [Anaconda](https://anaconda.com).
@@ -24,24 +26,16 @@ We advise installing the packages for this repository using Anaconda, there is a
 - Step 6. In your terminal navigate to the `cd src/web` folder.
 - Step 7. Execute the `python main.py` command while in your Anaconda environment and the src/web folder.
 
-#### PIP
+#### 1.2.2. PIP
 Installing the application this way can cause issues.
 
-#### NPM
+#### 1.2.3. NPM
 These steps are **optional** and only need to be done if you are planning on **changing** the frontend.
 - Step 1. Clone this repository onto your machine if you have not done this yet. 
 - Step 2. Download and install [NPM](https://nodejs.org/en/download/), we recommend installing the LTS version.
 - Step 3. Go to `/src/web/vue/` in your command prompt of choice.
 - Step 4. Execute the command `npm install`, to install all the packages used for the frontend.
 - Step 5. Now you can run the command `npm run serve` to run a development build of the app. When you have finished developing the frontend you can run `npm run build` to have it replace the items on the Flask server.
-
-### 1.1. Jupyter Notebook
-
-Either install [Jupyter notebook with mamba, conda, or pip](https://jupyter.org/install). 
-
-### 1.2. Web server
-
-Iets over vuejs, flask, etc installeren @cedric
 
 ### 1.3. Standalone python files
 
