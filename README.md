@@ -15,7 +15,7 @@ Either install [Jupyter notebook with mamba, conda, or pip](https://jupyter.org/
 
 ### 1.2. Web server
 
-#### Anaconda
+#### 1.2.1. Anaconda
 We advise installing the packages for this repository using Anaconda, there is an option to install this using pip but this can cause issues.
 - Step 1. Clone this repository onto your machine. 
 - Step 2. Download and install [Anaconda](https://anaconda.com).
@@ -26,10 +26,10 @@ We advise installing the packages for this repository using Anaconda, there is a
 - Step 6. In your terminal navigate to the `cd src/web` folder.
 - Step 7. Execute the `python main.py` command while in your Anaconda environment and the src/web folder.
 
-#### PIP
+#### 1.2.2. PIP
 Installing the application this way can cause issues.
 
-#### NPM
+#### 1.2.3. NPM
 These steps are **optional** and only need to be done if you are planning on **changing** the frontend.
 - Step 1. Clone this repository onto your machine if you have not done this yet. 
 - Step 2. Download and install [NPM](https://nodejs.org/en/download/), we recommend installing the LTS version.
