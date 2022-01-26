@@ -18,10 +18,10 @@ We advise installing the packages for this repository using Anaconda, there is a
 - Step 1. Clone this repository onto your machine. 
 - Step 2. Download and install [Anaconda](https://anaconda.com).
 - Step 3. Open the Anaconda Powershell Prompt.
-- Step 4. In your terminal navigate to the folder you cloned the repository into.
+- Step 4. In your terminal navigate to the folder you cloned the repository into `cd "filelocation"`.
 - Step 5. Execute the command `conda env create -f requirements_conda.yml` and install the required packages..
 - Step 6. Activate your installed environment using `conda activate BD04`.
-- Step 6. In your terminal navigate to the `/src/web` folder.
+- Step 6. In your terminal navigate to the `cd src/web` folder.
 - Step 7. Execute the `python main.py` command while in your Anaconda environment and the src/web folder.
 
 #### PIP
