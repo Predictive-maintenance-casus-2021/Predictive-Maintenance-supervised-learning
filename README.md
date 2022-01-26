@@ -21,7 +21,8 @@ We advise installing the packages for this repository using Anaconda, there is a
 - Step 4. In your terminal navigate to the folder you cloned the repository into.
 - Step 5. Execute the command `conda env create -f requirements_conda.yml` and install the required packages..
 - Step 6. Activate your installed environment using `conda activate BD04`.
-- Step 7. You can now execute the `main.py` file in `src/web/` in your conda environment to start the application.
+- Step 6. In your terminal navigate to the `/src/web` folder.
+- Step 7. Execute the `python main.py` command while in your Anaconda environment and the src/web folder.
 
 #### PIP
 Installing the application this way can cause issues.
